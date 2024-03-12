@@ -37,7 +37,7 @@ def sales_price_dist_plot(df):
     return fig
 
 
-def price_dist_by_products(df):
+def price_dist_by_products_plot(df):
     fig, axs = plt.subplots()
     pivoted = pd.pivot(df,columns='Product', values = 'Sale Price')
     pivoted.plot.box(ax = axs)
@@ -45,9 +45,9 @@ def price_dist_by_products(df):
     fig.savefig('Box-plots of price distribution by category.png')
     return fig
 
-def gender_dist_plots(df):
+def gender_dist_plot(df):
     fig, axs = plt.subplots()
-    df['Category'].plot.pie(ax = axs)
+    df.groupby('Category', observed=True)['Units Sold'].sum().plot.pie(ax = axs)
     fig.savefig('Pie-chart of transactions by gender.png')
     return fig
 
