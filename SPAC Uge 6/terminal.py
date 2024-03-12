@@ -1,15 +1,23 @@
-from dataanalyser import *
+from data_analyser import *
 from datareader import *
+from data_visualiser import *
+import matplotlib.pyplot as plt
+import os
+
+
+
+
 
 #we are not gonna do math on these numbers
 while True:
-    print("1) Total Sales)")
-    print("2) Average Sales")
-    print("3) Top 5 Units Sold")
+    print("1) Total Salg")
+    print("2) Gennemsnitlig Salg")
+    print("3) Top 5 Units Solgt")
     print("4) Top 5 Price ")
-    print("5) Top 5 Gender Distribution")
-    print("6) Sales Over Time")
-    print("7) Quit")
+    print("5) Kønsfordeling")
+    print("6) Salg over tid")
+    print("7) Plots")
+    print("8) Quit")
     
     choice = input("Enter your choice: ")
     
@@ -17,31 +25,51 @@ while True:
 
     if choice == '1':
         total_sales_amount, total_transactions = total_sales(df_salesdata)
-        print("Total Sales:", total_sales_amount)
-        print("Total Transactions:", total_transactions)
+        print("Total Salg:", total_sales_amount)
+        print("Total Transaktioner:", total_transactions)
     elif choice == '2':
-        print("Average Sales:", avg_sales(df_salesdata))
+        print("Gennemsnitlig salg:", avg_sales(df_salesdata))
     elif choice == '3':
-        print("Top 5 Units Sold:")
+        print("Top 5 Units Solgt:")
         print(top_x_units(df_salesdata))
     elif choice == '4':
-        print("Top 5 Price:")
+        print("Top 5 Priser:")
         print(top_x_price(df_salesdata))
     elif choice == '5':
-        print("Gender Distribution:")
-        category = input("Skriv køn til udvælgelse (Women, Men, Children, eller Vis Alle): ")  
-        if category.lower() == 'vis alle':
-            print(gender(df_salesdata))
-        elif category.lower() in ['men', 'women', 'children']:
-            print("Gender Distribution for all categories:")
-            print(gender(df_salesdata,category))
-        else:
-            print("Invalid køns kategori. Please enter 'Men', 'Women', or 'Children'.")
+        print("Kønsfordeling:")
+        print(gender(df_salesdata))
+
     elif choice == '6':
-        print("Sales Over Time:")
-        sales_over_time(df_salesdata) 
+        print("Salg Over Tid:")
+        print(sales_over_time_plot(df_salesdata))
     elif choice == '7':
+        print("Vælg plot")
+        print("1) Sales over Time")
+        print("2) Cumulative Sales")
+        print("3) Sales of Top Selling Product")
+        print("4) Sales Price Distribution")
+        print("5) Price Distribution by Products")
+        print("6) Gender Distribution")
+        print("7) Quit")
+        plot_choice = input("Enter your choice: ").strip()
+        if plot_choice == '1':
+            sales_over_time_plot(df_salesdata)
+        elif plot_choice == '2':
+            cumulative_sales_plot(df_salesdata)
+        elif plot_choice == '3':
+            sales_of_topselling_product_plot(df_salesdata)
+        elif plot_choice == '4':
+            sales_price_dist_plot(df_salesdata)
+        elif plot_choice == '5':
+            price_dist_by_products_plot(df_salesdata)
+        elif plot_choice == '6':
+            gender_dist_plot(df_salesdata)
+        elif plot_choice == '7':
+            break
+        else:
+            print("Invalid choice")
+    elif choice == '8':
         print("Exiting...")
         break
     else:
-        print("Invalid valg, skriv venligt et nummer mellem 1-7")
+        print("Invalid valg, skriv venligt et nummer mellem 1-8")
