@@ -43,5 +43,11 @@ def price_dist_by_products(df):
     fig.savefig('Box-plots of price distribution by category.png')
     return fig
 
+def gender_dist_plots(df):
+    fig, axs = plt.subplots()
+    df['Category'].plot.pie(ax = axs)
+    fig.savefig('Pie-chart of transactions by gender.png')
+    return fig
+
 
 
