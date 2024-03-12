@@ -7,15 +7,17 @@ def sales_over_time_plot(df):
     sales_per_day.plot(ax = axs)
     axs.set_xlabel('Date')
     axs.set_ylabel('Income')
+    fig.autofmt_xdate()
     fig.savefig('Sales over Time.png')
     return fig
 
 def cumulative_sales_plot(df):
     cumulative = cumulative_sales(df)
-    fig, axs = plt.subplots()
+    fig, axs = plt.subplots(figsize= (40,4))
     cumulative.plot.area(ax = axs)
     axs.set_xlabel('Time')
     axs.set_ylabel('Cumulative Income')
+    fig.autofmt_xdate()
     fig.savefig('Cumulative Sales.png')
     return fig
 
