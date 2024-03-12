@@ -40,8 +40,17 @@ def top_x_units(df, x=5):
 def top_x_price(df, x=5):
     return df.groupby('Product')['Sale Price'].sum().nlargest(x)
 
-def gender(df):
-        return df.groupby('Category')['Units Sold'].sum()
+def gender(df, category=None):
+    if category:
+        if category.lower() in ['men', 'women', 'children']:
+            gender_distribution = df[df['Category'].str.lower() == category.lower()]['Units Sold'].sum()
+            return {category: gender_distribution}
+        else:
+            print("Invalid gender category. Please enter 'Men', 'Women', or 'Children'.")
+            return None  
+    else:
+        gender_distribution = df.groupby('Category')['Units Sold'].sum()
+        return gender_distribution
     
 def sales_over_time(df):
    # Antag at du har en kolonne 'date' i din DataFrame
