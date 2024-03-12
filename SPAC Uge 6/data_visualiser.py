@@ -37,7 +37,7 @@ def sales_price_dist_plot(df):
 
 def price_dist_by_products(df):
     fig, axs = plt.subplots()
-    pivoted = pd.pivot(df_salesdata,columns='Product', values = 'Sale Price')
+    pivoted = pd.pivot(df,columns='Product', values = 'Sale Price')
     pivoted.plot.box(ax = axs)
     axs.set_ylabel('Price')
     fig.savefig('Box-plots of price distribution by category.png')
