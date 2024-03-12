@@ -16,7 +16,9 @@ while True:
     choice = choice.strip()
 
     if choice == '1':
-        print("Total Sales:", total_sales(df_salesdata))
+        total_sales_amount, total_transactions = total_sales(df_salesdata)
+        print("Total Sales:", total_sales_amount)
+        print("Total Transactions:", total_transactions)
     elif choice == '2':
         print("Average Sales:", avg_sales(df_salesdata))
     elif choice == '3':
