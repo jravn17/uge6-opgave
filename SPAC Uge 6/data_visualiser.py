@@ -1,4 +1,5 @@
 from data_analyser import *
+import pandas as pd
 import matplotlib.pyplot as plt
 
 def sales_over_time_plot(df):
