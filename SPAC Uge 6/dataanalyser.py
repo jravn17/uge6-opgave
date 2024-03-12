@@ -1,11 +1,23 @@
 import pandas as pd
 from datareader import df_salesdata
 
-def total_sales(df):
-    try:
-        return df['Sale Price'].sum()
-    except ValueError:
-        pass
+def total_sales(df, filters=[]):
+    if not filters:
+        try:
+            total_sales_amount = df['Sale Price'].sum()
+            total_transactions = len(df)
+            return total_sales_amount, total_transactions
+        except ValueError:
+            pass
+    else:
+        try:
+            sales = df.groupby(filters)['Sale Price'].sum()
+            total_transactions = df.groupby(filters).size()
+            return sales, total_transactions
+        except ValueError:
+            pass
+        except KeyError:
+            print('Incorrect filter applied')
         
 def avg_sales(df):
     try:
