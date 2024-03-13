@@ -1,10 +1,9 @@
 from data_analyser import Analyser
-from data_reader import df_salesdata
+from datareader import df_salesdata , DataReader
 from data_visualiser import Plots
-import matplotlib.pyplot as plt
-import os
 
-#we are not gonna do math on these numbers
+df_salesdata = DataReader.load_data(df_salesdata)
+
 while True:
     print("1) Total Salg")
     print("2) Gennemsnitlig Salg")
@@ -40,12 +39,12 @@ while True:
         print(Analyser.sales_over_time_plot(df_salesdata))
     elif choice == '7':
         print("Vælg plot")
-        print("1) Salg over tid")
-        print("2) Kumulative salg")
-        print("3) Salg per produkt")
-        print("4) Salgspris distribution")
-        print("5) Salgspris distribution per produkt")
-        print("6) Kønsfordeling")
+        print("1) Sales over Time")
+        print("2) Cumulative Sales")
+        print("3) Sales of Top Selling Product")
+        print("4) Sales Price Distribution")
+        print("5) Price Distribution by Products")
+        print("6) Gender Distribution")
         print("7) Quit")
         plot_choice = input("Enter your choice: ").strip()
         if plot_choice == '1':
