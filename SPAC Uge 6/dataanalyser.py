@@ -4,34 +4,29 @@ class Analyser:
     def total_sales(df, filters = []):
         if not filters:
             try:
-                return df['Sale Price'].sum()
-            except ValueError:
-                pass
+                return df['Sale Price'].sum(), None
+            except ValueError as e:
+                return None, e
         else:
             try:
                 sales = df.groupby(filters)['Sale Price'].sum()
-                return sales
-            except ValueError:
-                pass
-            except KeyError:
-                print('Incorrect filter applied')
-
+                return sales, None
+            except (ValueError, KeyError) as e:
+                return None, e
 
     @staticmethod
-    def avg_sales(df,filters =[]):
+    def avg_sales(df, filters =[]):
         if not filters:
             try:
-                return df['Sale Price'].mean()
-            except ValueError:
-                pass
+                return df['Sale Price'].mean(), None
+            except ValueError as e:
+                return None, e
         else:
             try:
                 sales = df.groupby(filters)['Sale Price'].mean()
-                return sales
-            except ValueError:
-                pass
-            except KeyError:
-                print('Incorrect filter applied')
+                return sales, None
+            except (ValueError, KeyError) as e:
+                return None, e
             
     @staticmethod
     def top_x_units(df, x=5):
@@ -46,9 +41,11 @@ class Analyser:
         return df.groupby('Category')['Units Sold'].sum()
     
     @staticmethod
-    def sales_over_time(df):
-        return df.groupby(df['Sale Date'].dt.date)['Sale Price'].sum()
-
+    def sales_over_time(df,):
+        return df.groupby([df['Sale Date'].dt.year.values,
+                            df['Sale Date'].dt.month.values])\
+                                ['Sale Price '].sum()
+        
     @staticmethod
     def cumulative_sales(df):
         return Analyser.sales_over_time(df).cumsum() 
