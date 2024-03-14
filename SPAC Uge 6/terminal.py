@@ -29,7 +29,25 @@ while True:
         print(Analyser.top_x_units(df_salesdata))
     elif choice == '4':
         print("Top 5 Priser:")
-        print(Analyser.top_x_price(df_salesdata))
+        print("1. For et specifikt år")
+        print("2. For alle år")
+    choice_year = input("Vælg option: ").strip()
+    if choice_year == '1':
+        year = int(input("Indtast et årstal mellem 2020-2024: "))
+        if year < 2020 or year > 2024:
+            print("Ugyldigt årstal. Prøv igen.")
+        else:
+            top_categories = Analyser.top_x_price(df_salesdata, year)
+            print(f"De fem mest solgte produktkategorier for år {year} er:")
+            for i, category in enumerate(top_categories, start=1):
+                print(f"{i}. {category}")
+    elif choice_year == '2':
+        top_categories_all_years = Analyser.top_x_price(df_salesdata)
+        print("De fem mest solgte produktkategorier for alle år er:")
+        for i, category in enumerate(top_categories_all_years, start=1):
+            print(f"{i}. {category}")
+        else:
+            print("Ugyldigt valg. Vælg enten 1 eller 2.")
     elif choice == '5':
         print("Kønsfordeling:")
         print(Analyser.gender(df_salesdata))
