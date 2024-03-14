@@ -34,8 +34,13 @@ class Analyser:
         return df.groupby('Product', observed = True)['Units Sold'].sum().nlargest(x)
 
     @staticmethod
-    def top_x_price(df, x=5):
-        return df.groupby('Product', observed = True)['Sale Price'].sum().nlargest(x)
+    def top_x_price(df, n=5):
+         if year:
+            df_year = df[df['Sale Date'].dt.year == year]
+        else:
+            df_year = df
+        top_categories = df_year.groupby('Product')['Sale Price'].sum().nlargest(n).index.tolist()
+        return top_categories
 
     @staticmethod
     def gender(df):
