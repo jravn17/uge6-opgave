@@ -42,7 +42,7 @@ while True:
                 for i, category in enumerate(top_categories, start=1):
                     print(f"{i}. {category}")
         elif choice_year == '2':
-            top_categories_all_years = Analyser.top_x_price(df_salesdata)
+            top_categories_all_years = Analyser.top_x_price(df_salesdata, year = None)
             print("De fem mest solgte produktkategorier for alle år er:")
             for i, category in enumerate(top_categories_all_years, start=1):
                 print(f"{i}. {category}")
