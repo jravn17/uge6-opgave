@@ -37,6 +37,5 @@ print('måned. Jeans har deres værste måned i februar 2022, hvilket er vores n
 print('Det ville derfor være en god ide, at kigge nærmere på disse tre produkter, og se hvad der kan gøres,')
 print('for at de har et mere stabilt højt salg i fremtiden.\n \n')
 Plots.gender_dist_plot(df_salesdata)
-print('Med hensyn til kænsfordelingen af vores tøj, viser tallene at vi sælger klart mest herrertøj,')
-print('mens vi stort set intet børnetøj sælger. Overvej derfor, om der skal gøres noget for at forbedre salget,')
-print('eller om det ville være bedre helt at droppe børnetøj for at fokusere mere på tøj til voksne.')
+print('Med hensyn til kænsfordelingen af vores tøj, viser tallene at vi sælger mest herrertøj,')
+print('og mindst børnetøj. Læg dog mærke til at y-aksen starter højt, så der er reelt set kun en forskel på ca 700 units.')
