@@ -34,7 +34,7 @@ class Analyser:
         return df.groupby('Product', observed = True)['Units Sold'].sum().nlargest(x)
 
     @staticmethod
-    def top_x_price(df, n=5):
+    def top_x_price(df, n=5, year):
          if year:
             df_year = df[df['Sale Date'].dt.year == year]
         else:
